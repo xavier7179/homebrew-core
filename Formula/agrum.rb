@@ -1,17 +1,17 @@
 class Agrum < Formula
-  desc "Library aGrUM is a C++ library for graphical models"
+  desc "C++ library for graphical models"
   homepage "https://agrum.gitlab.io/pages/agrum.html"
   url "https://gitlab.com/agrumery/aGrUM.git", :tag => "0.18.0", :revision => "526a9cd8dcbdaee3b0cbbfcb0551511e74a0998f"
 
   depends_on "bash" => :build
   depends_on "cmake" => [:build, :test]
   depends_on "coreutils" => :build
-  depends_on "python" => :build
+  depends_on "python@3.8" => :build
 
   def install
     ENV.deparallelize
-    ENV["cc"]="$(which clang)"
-    ENV["cxx"]="$(which clang++)"
+    #ENV.CC="$(which clang)"
+    #ENV.CCX="$(which clang++)"
     system "python", "act", "install", "release", "aGrUM", "--static", "-d", prefix
   end
 
